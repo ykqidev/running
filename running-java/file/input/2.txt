@@ -1,0 +1,33 @@
+package com.proj.object;
+
+import com.proj.bean.Student;
+import org.junit.Test;
+
+import java.io.*;
+
+public class TestExternalizable {
+
+    @Test
+    public void read() throws IOException {
+
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("resources/data.bat"));
+        Object object = null;
+        try {
+            object = ois.readObject();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        System.out.println(object);
+
+    }s
+
+    @Test
+    public void save() throws IOException {
+
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("resources/data.bat"));
+        Student student = new Student(1,"张三",18);
+        student.setSchool("社会");
+        oos.writeObject(student);
+    }
+}
+
